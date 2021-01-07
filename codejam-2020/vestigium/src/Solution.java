@@ -20,7 +20,7 @@ public class Solution
 
     private static void findTrace() throws IOException {
 
-        //File file = new File("input.txt");
+        //File file = new File("vestigium-input.txt");
         //BufferedReader reader = new BufferedReader(new FileReader(file));
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 

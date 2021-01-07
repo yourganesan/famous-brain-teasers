@@ -19,7 +19,7 @@ public class Solution
         //File file = new File("input.txt");
         //BufferedReader reader = new BufferedReader(new FileReader(file));
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        
+
         // Reading data using readLine
         int noOfTests = Integer.parseInt(reader.readLine());
 

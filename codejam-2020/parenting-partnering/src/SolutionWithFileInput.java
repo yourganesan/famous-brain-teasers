@@ -1,10 +1,15 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Map;
+import com.sun.tools.javac.util.Pair;
 
-public class Solution
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+public class SolutionWithFileInput
 {
     public static void main(String[] args) {
         try {
@@ -16,12 +21,9 @@ public class Solution
 
     private static void solveParentingPartneringProblem() throws IOException {
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        solveProblem(reader);
-    }
+        File file = new File("input.txt");
+        BufferedReader reader = new BufferedReader(new FileReader(file));
 
-    private static void solveProblem(BufferedReader reader) throws IOException
-    {
         // Reading data using readLine
         int noOfTests = Integer.parseInt(reader.readLine());
 
@@ -29,8 +31,8 @@ public class Solution
         {
             int taskCount = Integer.parseInt(reader.readLine());
             Map<String, Pair<Integer, Integer>> parentsEngagementMap = new HashMap<>();
-            parentsEngagementMap.put("C", new Pair(0, 0));
-            parentsEngagementMap.put("J", new Pair(0, 0));
+            parentsEngagementMap.put("C", Pair.of(0, 0));
+            parentsEngagementMap.put("J", Pair.of(0, 0));
 
             String output = "";
             for (int rowCounter = 0; rowCounter < taskCount; rowCounter++) // row loop
@@ -39,7 +41,7 @@ public class Solution
                 String rowStr = reader.readLine();
                 String[] rowStrArr = rowStr.split(" ");
 
-                Pair<Integer, Integer> currentTaskTimeRange = new Pair(Integer.parseInt(rowStrArr[0]), Integer.parseInt(rowStrArr[1]));
+                Pair<Integer, Integer> currentTaskTimeRange = Pair.of(Integer.parseInt(rowStrArr[0]), Integer.parseInt(rowStrArr[1]));
 
                 for ( String parent : parentsEngagementMap.keySet())
                 {
@@ -55,6 +57,7 @@ public class Solution
                 }
                 if(!taskAssigned)
                 {
+                    //System.out.println("IMPOSSIBLE");
                     output = "IMPOSSIBLE";
                     break;
                 }
@@ -62,15 +65,4 @@ public class Solution
             System.out.println("Case #"+(testCounter+1)+": "+output);
         }
     }
-
-    static class Pair<A, B> {
-        public final A fst;
-        public final B snd;
-
-        public Pair(A var1, B var2) {
-            this.fst = var1;
-            this.snd = var2;
-        }
-    }
 }
-
